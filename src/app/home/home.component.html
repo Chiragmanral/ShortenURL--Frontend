@@ -21,13 +21,17 @@
         required
       />
       <button class="btn" type="submit">Shorten URL</button>
-      <button (click)="goToHome()" class="btn">Go to Home</button>
+      <button class="btn">Go to Home</button>
     </form>
+  
+    <div *ngIf="isURLAlreadyShort">
+      <h3>Entered URL is already short, please enter a long url!!</h3>
+    </div>
 
     <div *ngIf="shortUrl" class="result">
       <p>
         Your short URL:
-        <a [href]="shortUrl" target="_blank" (click)="getTotalClicks()">https://www.nanofy.com/{{ shortId }}</a>
+        <a [href]="shortUrl" target="_blank" (click)="getTotalClicks()">{{domainName}}{{ shortId }}</a>
       </p>
       <p *ngIf="clickCount !== null">Total clicks: {{ clickCount }}</p>
     </div>

@@ -15,12 +15,20 @@ export class HomeComponent {
   longUrl = '';
   shortId = '';
   shortUrl = '';
+  domainName : string = "https://nanofy.com/";
+  isURLAlreadyShort : boolean = false;
   clickCount: number | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   shorten() {
     if (!this.longUrl) return;
+
+    if(this.longUrl.length <= (this.domainName.length + 6)) {
+      this.isURLAlreadyShort = true;
+      this.shortUrl = "";
+      return;
+    }
 
     this.http
       .post<{ shortId: string }>('https://shortenurl-backend-taj4.onrender.com/url', {
@@ -31,6 +39,7 @@ export class HomeComponent {
           this.shortId = shortId;
           this.shortUrl = `https://shortenurl-backend-taj4.onrender.com/${shortId}`;
           this.clickCount = 0;
+          this.isURLAlreadyShort = false;
         },
         error: () => alert('Server error – check backend console.'),
       });
@@ -46,9 +55,4 @@ export class HomeComponent {
               return this.clickCount = a.totalClicks});
   }
 
-  goToHome() {
-  this.router.navigateByUrl('/').then(() => {
-    window.location.reload(); 
-  });
-  }
 }
