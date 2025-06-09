@@ -23,13 +23,13 @@ export class HomeComponent {
     if (!this.longUrl) return;
 
     this.http
-      .post<{ shortId: string }>('http://localhost:8000/url', {
+      .post<{ shortId: string }>('https://shortenurl-backend-taj4.onrender.com/url', {
         redirectURL: this.longUrl,
       })
       .subscribe({
         next: ({ shortId }) => {
           this.shortId = shortId;
-          this.shortUrl = `http://localhost:8000/${shortId}`;
+          this.shortUrl = `https://shortenurl-backend-taj4.onrender.com/${shortId}`;
           this.clickCount = 0;
         },
         error: () => alert('Server error – check backend console.'),
@@ -39,7 +39,7 @@ export class HomeComponent {
   getTotalClicks() {
     this.http
             .get<{ totalClicks: number }>(
-              `http://localhost:8000/analytics/${this.shortId}`
+              `https://shortenurl-backend-taj4.onrender.com/analytics/${this.shortId}`
             )
             .subscribe((a) => {
               console.log(a.totalClicks);
