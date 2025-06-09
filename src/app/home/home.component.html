@@ -1,0 +1,40 @@
+<header>
+  <div class="header">
+    <a routerLink="/" class="logo">ShortURL</a>
+  </div>
+</header>
+
+<br />
+
+<main id="urlbox">
+  <section class="urlSection">
+    <h1>Paste the URL to be shortened</h1>
+
+    <form (submit)="$event.preventDefault(); shorten()">
+      <br />
+      <input
+        [(ngModel)]="longUrl"
+        name="link"
+        type="url"
+        placeholder="Enter the link here"
+        class="inputLink"
+        required
+      />
+      <button class="btn" type="submit">Shorten URL</button>
+      <button (click)="goToHome()" class="btn">Go to Home</button>
+    </form>
+
+    <div *ngIf="shortUrl" class="result">
+      <p>
+        Your short URL:
+        <a [href]="shortUrl" target="_blank" (click)="getTotalClicks()">{{ shortUrl }}</a>
+      </p>
+      <p *ngIf="clickCount !== null">Total clicks: {{ clickCount }}</p>
+    </div>
+
+    <p>
+      ShortURL is a free tool to shorten URLs and generate short links<br />
+      URL shortener allows to create a shortened link making it easy to share
+    </p>
+  </section>
+</main>
