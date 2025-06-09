@@ -27,7 +27,7 @@
     <div *ngIf="shortUrl" class="result">
       <p>
         Your short URL:
-        <a [href]="shortUrl" target="_blank" (click)="getTotalClicks()">{{ shortUrl }}</a>
+        <a [href]="shortUrl" target="_blank" (click)="getTotalClicks()">https://www.nanofy.com/{{ shortId }}</a>
       </p>
       <p *ngIf="clickCount !== null">Total clicks: {{ clickCount }}</p>
     </div>
