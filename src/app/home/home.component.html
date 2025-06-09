@@ -24,6 +24,10 @@
       <button class="btn">Go to Home</button>
     </form>
   
+    <div *ngIf="!isValidUrl">
+      <h3>Please enter a valid URL!!</h3>
+    </div>
+
     <div *ngIf="isURLAlreadyShort">
       <h3>Entered URL is already short, please enter a long url!!</h3>
     </div>

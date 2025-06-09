@@ -17,14 +17,23 @@ export class HomeComponent {
   shortUrl = '';
   domainName : string = "https://nanofy.com/";
   isURLAlreadyShort : boolean = false;
+  isValidUrl = true;
   clickCount: number | null = null;
+  urlRegex = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
 
   constructor(private http: HttpClient, private router: Router) {}
 
   shorten() {
     if (!this.longUrl) return;
+    this.isValidUrl = this.urlRegex.test(this.longUrl);
 
-    if(this.longUrl.length <= (this.domainName.length + 6)) {
+    if(!this.isValidUrl) {
+      this.isURLAlreadyShort = false;
+      this.shortUrl = "";
+      return;
+    }
+
+    else if(this.longUrl.length <= (this.domainName.length + 6)) {
       this.isURLAlreadyShort = true;
       this.shortUrl = "";
       return;
