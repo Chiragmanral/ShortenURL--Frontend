@@ -64,4 +64,9 @@ export class HomeComponent {
               return this.clickCount = a.totalClicks});
   }
 
+  goToHome() {
+    this.router.navigateByUrl('/').then(() => {
+      window.location.reload(); 
+    });
+  }
 }

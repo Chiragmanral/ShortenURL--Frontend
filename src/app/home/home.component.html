@@ -21,7 +21,7 @@
         required
       />
       <button class="btn" type="submit">Shorten URL</button>
-      <button class="btn">Go to Home</button>
+      <button class="btn" (click)="goToHome()">Go to Home</button>
     </form>
   
     <div *ngIf="!isValidUrl">
