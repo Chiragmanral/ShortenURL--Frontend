@@ -12,12 +12,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  longUrl = '';
-  shortId = '';
-  shortUrl = '';
+  longUrl : string = '';
+  shortId : string = '';
+  shortUrl : string = '';
   domainName : string = "https://nanofy.com/";
   isURLAlreadyShort : boolean = false;
-  isValidUrl = true;
+  isValidUrl : boolean = true;
   clickCount: number | null = null;
   urlRegex = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
 
