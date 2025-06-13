@@ -4,45 +4,45 @@
   </div>
 </header>
 
-<br />
-
 <main id="urlbox">
   <section class="urlSection">
-    <h1>Paste the URL to be shortened</h1>
+    <h1>🔗 Paste the URL to be shortened</h1>
 
     <form (submit)="$event.preventDefault(); shorten()">
-      <br />
       <input
         [(ngModel)]="longUrl"
         name="link"
         type="url"
-        placeholder="Enter the link here"
+        placeholder="https://example.com/very/long/url"
         class="inputLink"
         required
       />
-      <button class="btn" type="submit">Shorten URL</button>
-      <button class="btn" (click)="goToHome()">Go to Home</button>
+      
+      <div class="btn-container">
+        <button class="btn" type="submit">🚀 Shorten URL</button>
+        <button class="btn secondary" type="button" (click)="goToHome()">🏠 Home</button>
+      </div>
     </form>
-  
-    <div *ngIf="!isValidUrl">
-      <h3>Please enter a valid URL!!</h3>
+
+    <div *ngIf="!isValidUrl" class="error">
+      ❌ Please enter a valid URL!
     </div>
 
-    <div *ngIf="isURLAlreadyShort">
-      <h3>Entered URL is already short, please enter a long url!!</h3>
+    <div *ngIf="isURLAlreadyShort" class="error">
+      ⚠️ Entered URL is already short!
     </div>
 
     <div *ngIf="shortUrl" class="result">
-      <p>
-        Your short URL:
-        <a [href]="shortUrl" target="_blank" (click)="getTotalClicks()">{{domainName}}{{ shortId }}</a>
-      </p>
-      <p *ngIf="clickCount !== null">Total clicks: {{ clickCount }}</p>
+      <p>Your short URL:</p>
+      <a [href]="shortUrl" target="_blank" (click)="getTotalClicks()">
+        {{ domainName }}{{ shortId }}
+      </a>
+      <p *ngIf="clickCount !== null">🔢 Total clicks: {{ clickCount }}</p>
     </div>
 
-    <p>
-      ShortURL is a free tool to shorten URLs and generate short links<br />
-      URL shortener allows to create a shortened link making it easy to share
+    <p class="footer-text">
+      ShortURL is a free tool to shorten URLs and generate smart links.<br />
+      Easily share clean and trackable links.
     </p>
   </section>
 </main>
