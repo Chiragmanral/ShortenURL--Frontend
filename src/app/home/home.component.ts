@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent {
   clickCount: number | null = null;
   urlRegex = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private auth : AuthService) {}
 
   shorten() {
     if (!this.longUrl) return;
@@ -65,8 +66,13 @@ export class HomeComponent {
   }
 
   goToHome() {
-    this.router.navigateByUrl('/').then(() => {
+    this.router.navigateByUrl('/short-url').then(() => {
       window.location.reload(); 
     });
+  }
+
+  logOut() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }
