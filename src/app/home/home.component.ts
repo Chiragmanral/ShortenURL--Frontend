@@ -66,9 +66,7 @@ export class HomeComponent {
   }
 
   goToHome() {
-    this.router.navigateByUrl('/short-url').then(() => {
-      window.location.reload(); 
-    });
+    this.router.navigateByUrl('/short-url')
   }
 
   logOut() {
